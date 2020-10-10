@@ -21,6 +21,9 @@ body {
 .postTitle {
     color: Pink;
 }
+.postAuthor {
+    color: rgb(37, 214, 37);
+}
 .postBody {
     color: red;
 }

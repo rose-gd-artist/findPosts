@@ -69,23 +69,38 @@ const getPosts = async () => {
   
     const result = document.getElementsByClassName("result")[0];
 
-    const postTitles = posts.find((post) => {
-      return `<div class="postTitle">${post.title}</div>`;
+    const postTitles = posts.map((post) => {
+      return post.title;
     });
 
-    // result.innerHTML += postTitles;
+    result.innerHTML += `<div class="postTitle">${postTitles}</div>`;
 
-    const userName = postUser.find((users) => {
-        return `<div class="postUser">by ${users.name}</div>`;
+    const kkkkk = postUser.find((user) => {
+
+
+
+        const authorName = postUser.map((user) => {
+
+            return user.name;
+            
+        });
+        console.log(authorName);
+        result.innerHTML += `<div class="postUser">${authorName}</div>`;
     });
 
-    // result.innerHTML += userName;
+    result.innerHTML += kkkkk;
 
-    const postBody = posts.find((post) => {
-        return `<div class="postBody">${post.body}</div>`;
+    const mapIt = posts.map((post) => {
+        return post.body;
     });
 
-    result.innerHTML += postTitles + userName + postBody;
+    result.innerHTML += `<div class="postBody">${mapIt}</div>`;
+
+    console.log(postTitles);
+    console.log(posts);
+    console.log(postUser);
+    console.log(mapIt);
+    console.log(kkkkk);
 
 };
 
