@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2vw;
+    color: #120c77;
+
+}
+.wrapper {
+    width: 100%;
+}
+
+.result {
+    width: 100%;
+    font-size: 2vw;
+    color:#120c77;
+    padding: 2vw 1%;
+
+}
+
+.postTitle {
+    color: Pink;
+}
+.postBody {
+    color: red;
+}
