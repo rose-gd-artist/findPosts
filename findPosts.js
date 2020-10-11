@@ -49,7 +49,7 @@ When a user clicks on a post, make an API call to retrieve the comments associat
 //     return foundCity;
 //   };
   
-//let result = document.getElementsByClassName("result")[0];
+// let result = document.getElementsByClassName("result")[0];
 
 // const printPosts = (postTitles) => {
 //     const result = document.getElementsByClassName("result")[0];
@@ -59,75 +59,126 @@ When a user clicks on a post, make an API call to retrieve the comments associat
 //     result.innerHTML += print.join("");
 
 // };
+
+// const getPosts = async () => {
+//     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+//     const posts = await response.json();
+
+//     const response2 = await fetch("https://jsonplaceholder.typicode.com/users");
+//     const postUser = await response2.json();
+
+//     const response3 = await fetch("https://jsonplaceholder.typicode.com/posts");
+//     const postBody = await response3.json();
+  
+//     const result = document.getElementsByClassName("result")[0];
+
+//     const answer = postUser.find((user) => {
+
+//         //let blogPost = [];
+
+//         if (this.user === this.post && this.user === this.body && this.post === this.body){
+
+//             let blogPost = [];
+
+//             const postTitles = posts.forEach((post) => {
+//                 return post.title;
+//             });
+            
+//             const authorName = postUser.forEach((user) => {
+//                 return user.name;
+//             });
+
+//             const mapIt = postBody.forEach((post) => {
+//                 return post.body;
+//             });
+//             //result.innerHTML = postTitles + authorName + mapIt;
+//             //return result;
+//             result.innerHTML += `<div class="postTitle">${postTitles}</div><div class="postAuthor">${authorName}</div><div class="postBody">${mapIt}</div>`;
+//             return result;
+//             // let postTitles = posts.map((post) => {
+//             //     return post.title;
+//             // });
+//             // let authorName = postUser.map((user) => {
+//             //     return user.name;
+//             // });
+//             // let mapIt = postBody.map((post) => {
+//             //     return post.body;
+//             // });
+
+//             //blogPost.push(this.postTitles, this.authorName, this.mapIt); // didn't work
+
+
+//             console.log(postTitles);
+//             console.log(authorName);
+//             console.log(mapIt);
+//             //console.log(blogPost);
+
+//         };            
+//         // result.innerHTML += answer;
+//     });
+
+//     return answer;
+
+
+//     // console.log(posts);
+//     // console.log(postUser);
+//     // console.log(answer);
+
+
+// };
+
+// getPosts() // possibility #1
+
+
+//////////////////////////////////
 
 const getPosts = async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     const posts = await response.json();
-
-    const response2 = await fetch("https://jsonplaceholder.typicode.com/users");
-    const postUser = await response2.json();
-  
-    const result = document.getElementsByClassName("result")[0];
-
-    const postTitles = posts.map((post) => {
-      return post.title;
-    });
-
-    result.innerHTML += `<div class="postTitle">${postTitles}</div>`;
-
-    const kkkkk = postUser.find((user) => {
-
-
-
-        const authorName = postUser.map((user) => {
-
-            return user.name;
-            
-        });
-        console.log(authorName);
-        result.innerHTML += `<div class="postUser">${authorName}</div>`;
-    });
-
-    result.innerHTML += kkkkk;
-
-    const mapIt = posts.map((post) => {
-        return post.body;
-    });
-
-    result.innerHTML += `<div class="postBody">${mapIt}</div>`;
-
-    console.log(postTitles);
-    console.log(posts);
-    console.log(postUser);
-    console.log(mapIt);
-    console.log(kkkkk);
+    ///showBlogPosts(posts);
+    return posts;
 
 };
 
-getPosts()
+const getUsers = async () => {
+    const response2 = await fetch("https://jsonplaceholder.typicode.com/users");
+    const postUsers = await response2.json();
+    ///showBlogPosts(postUsers);
+    return postUsers;
 
-// const getUser = async () => {
-//     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-//     const postUser = await response.json();
+};
+
+const getPostBody = async () => {
+    const response3 = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const postBody = await response3.json();
+    ///showBlogPosts(postBody);
+    return postBody;
+
+};
+
+const showBlogPosts = async (posts, users) => {
+    const result = document.getElementsByClassName("result")[0];
+    const postTitle = await getPosts();
+    const usersName = await getUsers();
+    const contentBody = await getPostBody();
+    console.log(postTitle, usersName, contentBody);
+    postTitle.forEach((posts) => {
+        result.innerHTML += `<div class="postTitle">${posts.title}</div></br>`;
+    
+    });
+    usersName.find((users) => {
+        result.innerHTML += `<div class="postAuthor">by ${users.name}</div></br>`;
+   
+    });
+    contentBody.forEach((posts) => {
+        result.innerHTML += `<div class="postBody">${posts.body}</div>`;
   
-//     const result = document.getElementsByClassName("result")[0];
+    });
 
-//     const userName = postUser.map((users) => {
-//       return `<div class="postUser">${users.name}</div>`;
-//     });
 
-//     result.innerHTML += userName.join("");
+};
 
-// };
+showBlogPosts() // possibiity #2
 
-// getUser()
 
-// getPostBody()
-// const printPosts = (postTitles) => {
-//     const result = document.getElementsByClassName("result")[0];
-//     const print = postTitles.map((postTitles) => {
-//         return `<div class="postTitle">${postTitles}</div>`;
-//     });
-//     result.innerHTML += print.join("");
 
-// };
