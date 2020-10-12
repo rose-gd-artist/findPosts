@@ -41,13 +41,17 @@ const showBlogPosts = async (posts, users) => {
     const postTitle = await getPosts();
     const usersName = await getUsers();
     postTitle.forEach((posts) => {
-        result.innerHTML += `<div class="postTitle">${posts.title}</div></br>`;
+        let blogEntry = document.createElement("div");
+        blogEntry.classList.add("blogEntry");
+        blogEntry.style.display = "block";
+        result.appendChild(blogEntry);
+        blogEntry.innerHTML += `<div class="postTitle">${posts.title}</div></br>`;
         usersName.find((users) => {
             if(users.id === posts.userId){
-                result.innerHTML += `<div class="postAuthor">by ${users.name}</div></br>`;
+                blogEntry.innerHTML += `<div class="postAuthor">by ${users.name}</div></br>`;
             };
         });
-        result.innerHTML += `<div class="postBody">${posts.body}</div>`;
+        blogEntry.innerHTML += `<div class="postBody">${posts.body}</div>`;
     });
 };
 
