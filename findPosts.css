@@ -61,3 +61,31 @@ body {
     margin: -3vw 4% 2vw;
     font-weight: 400;
 }
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
+.commentBox {
+    color:#474750;
+}
+.postComments {
+    color:#474750;
+    padding-top: -2vw;
+    margin: 4vw 4% 2vw;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.postCommentsName {
+    color:#474750;
+    padding-top: -2vw;
+    margin: -3vw 6% 2vw;
+    font-weight: 500;
+}
+.postCommentsBody {
+    color:#474750;
+    padding-top: -2vw;
+    margin: -3vw 6% 2vw;
+    font-weight: 400;
+}

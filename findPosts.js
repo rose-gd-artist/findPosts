@@ -18,7 +18,8 @@ Grading criteria:
 
 Stretch goal:
 
-When a user clicks on a post, make an API call to retrieve the comments associated with that post and display them on the page.
+When a user clicks on a post, make an API call to retrieve the comments associated with that
+post and display them on the page.
 
 */
 
@@ -36,12 +37,24 @@ const getUsers = async () => {
 
 };
 
-const showBlogPosts = async (posts, users) => {
+//`"https://jsonplaceholder.typicode.com/comments?postId=${""}`
+const getComments = async (posts) => {
+    const response3 = await fetch("https://jsonplaceholder.typicode.com/comments");
+    const postComments = await response3.json();
+    return postComments;
+
+};  // new stretch
+
+let commentButton;
+let blogEntry;
+
+const showBlogPosts = async (posts, users, comments) => {    // new stretch added comments arg
     const result = document.getElementsByClassName("result")[0];
     const postTitle = await getPosts();
+    const commentsOnPost = await getComments();   // new stretch
     const usersName = await getUsers();
-    postTitle.forEach((posts) => {
-        let blogEntry = document.createElement("div");
+    postTitle.forEach((posts, e) => {
+        blogEntry = document.createElement("div");
         blogEntry.classList.add("blogEntry");
         blogEntry.style.display = "block";
         result.appendChild(blogEntry);
@@ -52,8 +65,43 @@ const showBlogPosts = async (posts, users) => {
             };
         });
         blogEntry.innerHTML += `<div class="postBody">${posts.body}</div>`;
+        let commentBox = document.createElement("div");
+        commentBox.classList.add("commentBox");
+        commentBox.classList.add("hide");
+        blogEntry.appendChild(commentBox);
+        commentButton = blogEntry.innerHTML += `<div class="postComments">Comments</div></br>`;
+        commentsOnPost.filter((comments) => {
+            if(comments.postId === posts.id){
+                commentBox.innerHTML += `<div class="postCommentsName">${comments.name}</div></br>
+                                        <div class="postCommentsBody">${comments.body}</div></br>`;
+            };
+        });
+        let commentClickers = document.querySelectorAll('.hide');
+        commentClickers.forEach(commentBox => {
+            commentBox.addEventListener("click", () => {
+                commentBox.classList.toggle("show");
+            });
+        });
     });
+    // commentButton.addEventListener("click", async() => {
+    //     commentBox = document.getElementsByClassName("commentBox")[0];
+    //     if (commentBox.style.display === "none") {
+    //         commentBox.style.display = "block";
+    //       } else {
+    //         commentBox.style.display = "none";
+    //       }
+    // });
+
+
 };
+
+// let clickable = commentButton.addEventListener("click", () => {
+//     if (commentBox.style.display === "none") {
+//         commentBox.style.display = "block";
+//       } else {
+//         commentBox.style.display = "none";
+//       }
+// });
 
 showBlogPosts()
 
